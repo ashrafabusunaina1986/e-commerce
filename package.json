@@ -1,0 +1,38 @@
+{
+  "name": "e-commerce",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^5.5.5",
+    "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@supabase/supabase-js": "^2.45.4",
+    "@types/react": "^18.3.7",
+    "@types/react-dom": "^18.3.0",
+    "axios": "^1.7.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "device-detector-js": "^3.0.3",
+    "lucide-react": "^0.441.0",
+    "mongoose": "^8.7.0",
+    "next": "14.2.11",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-select": "^5.8.1",
+    "react-tailwindcss-select": "^1.8.5",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^0.9.4"
+  },
+  "devDependencies": {
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1"
+  }
+}
