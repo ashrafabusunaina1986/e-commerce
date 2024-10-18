@@ -4,8 +4,7 @@ import jwt from "jsonwebtoken";
 
 export const GET = async (req) => {
   const u = userAgent(req);
-  const token = jwt.sign(u, JSON.stringify(u));
-  cookies().set("adds-shop", token);
+  cookies().set("adds-shop", JSON.stringify(u));
   return NextResponse.json(
     {
       u,

@@ -6,7 +6,7 @@ import { AddContext } from "@/context/AddToCart";
 import { createAddProductToCart, fetchAddsFromCart } from "@/action";
 import axios from "axios";
 export const ipd = async () => {
-  const c = await axios.get(`https://e-commerce-123.vercel.app/api`);
+  const c = await axios.get(`/api`);
   console.log((await c.data))
   return (await c.data).addCart;
 };
