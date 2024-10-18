@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse, userAgent } from "next/server";
-import jwt from "jsonwebtoken";
+
 
 export const GET = async (req) => {
   const u = userAgent(req);
