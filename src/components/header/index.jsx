@@ -35,7 +35,7 @@ function Header({ user, profileInfo }) {
   ];
   const [showSheet, setShowSheet] = useState(false);
   const [productType, setProductType] = useState(search);
-  
+
   const handleSearchProducts = async (e) => {
     e.preventDefault();
     location.assign(
@@ -91,13 +91,12 @@ function Header({ user, profileInfo }) {
                 setProductType({ ...productType, type: e.target.value })
               }
               placeholder="Search..."
-              className="inline-flex px-3 py-1 w-[450px] border-2 border-e-white focus:border-gray-950 focus:bg-blue-50 focus-visible:ring-0 focus-visible:drop-shadow-sm focus-visible:shadow-gray-200"
+              className="inline-flex px-3 py-1 w-[200px] rounded-s-full lg:w-[450px] border-2 border-e-white focus:border-gray-950 focus:bg-blue-50 focus-visible:ring-0 focus-visible:drop-shadow-sm focus-visible:shadow-gray-200"
             />
             <button
               type="submit"
-              className="border-2 flex items-center justify-center px-3 py-1 hover:bg-gray-200"
+              className="border-2 flex items-center justify-center px-3 py-1 rounded-e-full hover:bg-gray-200"
             >
-              
               <Search />
             </button>
           </form>
