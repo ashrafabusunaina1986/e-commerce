@@ -7,6 +7,7 @@ import { createAddProductToCart, fetchAddsFromCart } from "@/action";
 import axios from "axios";
 export const ipd = async () => {
   const c = await axios.get(`/api`);
+  console.log((await c.data))
   return (await c.data).addCart;
 };
 export default function ViewProduct({ product, user }) {
