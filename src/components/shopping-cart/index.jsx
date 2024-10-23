@@ -29,7 +29,7 @@ function ShoppingCart() {
         href={`/cart?ua_=${str}`}
         className="inline-flex relative border-2 px-3 py-1 rounded-full bg-red-200 shadow-sm shadow-red-400 hover:shadow-md hover:shadow-red-500 cursor-pointer mr-3"
       >
-        {add?.length >= 0 && (
+        {add?.length > 0 && (
           <span className="absolute left-[35%] -top-4 text-red-950 font-bold text-xl ">
             {add.length}
           </span>
