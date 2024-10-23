@@ -1,11 +1,12 @@
-import { fetchAddsFromCart } from "@/action";
+import { fetchAddsFromCart, getProductsAddsAction } from "@/action";
 import Cart from "@/components/cart";
+import { ipd } from "@/components/view-product";
+import axios from "axios";
 import React from "react";
 
-async function CartPage() {
-  const adds = await fetchAddsFromCart(navigator.userAgent[1]);
-  console.log(navigator.userAgent )
-  return <Cart adds={adds}/>
+async function CartPage({searchParams}) {
+  const adds = await getProductsAddsAction(searchParams.ua_);
+  return <Cart adds={adds} />;
 }
 
 export default CartPage;

@@ -68,7 +68,22 @@ export const fetchAddsFromCart = async (systemId) => {
   return JSON.parse(JSON.stringify(adds));
 };
 
-export const getIpAction = () => {};
+export const getProductsAddsAction = async (systemId) => {
+  await db();
+  const r = await Carts.aggregate([
+    {
+      $lookup: {
+        from: "products",
+        localField: "productId",
+        foreignField: "_id",
+        as: "pa",
+      },
+    },
+    {
+      $match: { systemId: systemId},
+    },
+  ]);
+};
 
 export const getUserAgentAction = async () => {
   const userAgent = await fetch("/api");

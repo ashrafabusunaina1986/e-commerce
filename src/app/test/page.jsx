@@ -1,23 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function Test() {
-  const [u, su] = useState(null);
-  const handleUserAgent = async () => {
-    const res = await fetch("/api");
-    if (!res.ok) {
-      alert(await res.text());
-      return;
+export function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
+    try {
+      const storedValue = localStorage.getItem(key);
+      return storedValue ? JSON.parse(storedValue) : initialValue;
+    } catch (error) {
+      console.error("Error reading from local storage ", error);
+      return initialValue;
     }
-    const ua = await res.json();
-    console.log(ua)
-    su(ua);
-  };
+  });
+  useEffect(() => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error("Error writing local storage ", error);
+    }
+  }, [key, value]);
+  return [value, setValue];
+}
+function Test() {
+  const [v, sv] = useLocalStorage("v", 0);
   return (
     <div className="w-11/12">
-      <span>{u?u.length:''}</span>
-      <button onClick={handleUserAgent}>userAgent</button>
+      <button onClick={() => sv(v + 1)}>increase</button>
+      <br />
+      <button onClick={() => sv(0)}>zero</button>
     </div>
   );
 }

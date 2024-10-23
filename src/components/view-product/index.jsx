@@ -5,16 +5,19 @@ import { supabaseClient } from "../new-product-s";
 import { AddContext } from "@/context/AddToCart";
 import { createAddProductToCart, fetchAddsFromCart } from "@/action";
 import axios from "axios";
+import { useLocalStorage } from "@/app/test/page";
+import P from "../p";
 export const ipd = async () => {
   const c = await axios.get(`/api`);
-  console.log((await c.data))
+  // console.log((await c.data))
   return (await c.data).addCart;
 };
 export default function ViewProduct({ product, user }) {
   const { add, setAdd } = useContext(AddContext);
   const [loading, setLoading] = useState(false);
   const [a, setA] = useState(false);
-  const [str, setStr] = useState("");
+  const [pct, setPct] = useState([]);
+  const [c, setC] = useLocalStorage("addCart", []);
 
   const getImageSupabase = () => {
     return supabaseClient.storage
@@ -22,26 +25,17 @@ export default function ViewProduct({ product, user }) {
       .getPublicUrl(`public/${product[0]?.image}`).data.publicUrl;
   };
   const handleCreateAddProductToCart = async () => {
-    const data = {
-      productId: product[0]?._id,
-      systemId: (await ipd()).toString(),
-      createdAt: Date.now().toLocaleString(),
-      dateCreate: new Date().toDateString(),
-    };
-    const r = await createAddProductToCart(
-      data,
-      `/products/${product[0]?.selectType}/${product[0]?._id}`
-    );
-    if (r) {
-      setLoading(false);
-      const ab = await fetchAddsFromCart((await ipd()).toString());
-      localStorage.setItem((await ipd()).toString(), JSON.stringify(a));
-      console.log((await ipd()).toString());
-
-      setAdd(ab);
-    }
+    setPct([...pct, product[0]]);
+    setAdd([...add, product[0]]);
+    setLoading(false);
   };
-  // console.log(add);
+
+  useEffect(() => {
+    console.log(add);
+    let p = add;
+    if (p?.length > 0) setC(p);
+  }, [a]);
+  
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 bg-gray-50 px-5 py-10 mb-20 border-[1px]">
       <div className="w-full flex flex-col gap-5 ">
@@ -118,7 +112,9 @@ export default function ViewProduct({ product, user }) {
             onClick={() => {
               setA(true);
               setLoading(true);
-              handleCreateAddProductToCart();
+              !add
+                ? setAdd([]) && handleCreateAddProductToCart()
+                : handleCreateAddProductToCart();
               setTimeout(() => {
                 setA(false);
               }, 3000);
