@@ -15,7 +15,7 @@ function Cards({ productAdd }) {
         <CardHeader>
           <CardTitle>{productAdd?.nameProduct}</CardTitle>
         </CardHeader>
-        <CardContent className="grid grid-cols-2 gap-x-10 gap-y-20">
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-20">
           <div>
             <div className="w-full">
               <Image
@@ -23,10 +23,10 @@ function Cards({ productAdd }) {
                 alt={productAdd?.image}
                 width={500}
                 height={600}
-                className="w-full h-[150px] object-fill rounded-md"
+                className="w-full md:w-2/4 h-[250px] lg:h-[150px] object-fill rounded-md"
               />
             </div>
-            <div className=" px-3 py-2 flex flex-col gap-3">
+            <div className="w-full md:w-2/4 px-3 py-2 flex flex-col gap-3">
               <div className="flex-col items-baseline justify-between gap-2">
                 <h3 className="text-sm font-bold text-gray-500">
                   Measurement:{productAdd?.measurement}
@@ -49,10 +49,12 @@ function Cards({ productAdd }) {
             </div>
           </div>
           <div className="flex gap-10">
-            <h1 className="text-sm font-bold text-red-900">Price:{productAdd?.price}</h1>
+            <h1 className="text-sm font-bold text-red-900">
+              Price:{productAdd?.price}
+            </h1>
             <button className="text-sm font-bold text-white bg-yellow-600 px-3 py-1 h-max rounded-full hover:shadow-sm hover:shadow-gray-700">
-          Buy
-        </button>
+              Buy
+            </button>
           </div>
         </CardContent>
       </Card>
