@@ -3,11 +3,17 @@ import React, { useEffect, useState } from "react";
 import CommonCard from "../common-card";
 import Cards from "../card";
 import { Button } from "../ui/button";
+import { redirect, useRouter } from "next/navigation";
 
-function Cart({ adds }) {
+function Cart({ user }) {
   const log = console.log;
+  const [adds, setAdds] = useState([]);
   const [price, setPrice] = useState(0);
-  console.log(adds);
+  const router = useRouter();
+  useEffect(() => {
+    setAdds(JSON.parse(localStorage.getItem("addCart")));
+  }, []);
+
   useEffect(() => {
     let sum = 0;
     const sumPrice = () => {
@@ -23,15 +29,21 @@ function Cart({ adds }) {
           Price of goods is{" "}
           <span className="text-sm font-bold text-red-400">{price}</span>
         </h1>
-        <button className="text-sm font-bold text-white bg-yellow-600 px-3 py-1 rounded-full hover:shadow-sm hover:shadow-gray-700">
+        <button
+          onClick={() => router.push(!user ? "/sign-in" : "/")}
+          className="text-sm font-bold w-max h-max text-white bg-yellow-600 px-3 py-1 rounded-full hover:shadow-sm hover:shadow-gray-700"
+        >
           Buy
         </button>
+        <h5 className="text-xs text-red-950">
+          Number of items are {adds.length}
+        </h5>
       </div>
       {adds?.length > 0 ? (
         adds.map((add, id) => {
           return (
             <div className="w-full" key={id}>
-              <Cards productAdd={add} />
+              <Cards productAdd={add} user={user} />
             </div>
           );
         })

@@ -31,7 +31,7 @@ export default function ViewProduct({ product, user }) {
   };
 
   useEffect(() => {
-    console.log(add);
+    // console.log(add);
     let p = add;
     if (p?.length > 0) setC(p);
   }, [a]);

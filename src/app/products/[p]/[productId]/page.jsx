@@ -16,7 +16,7 @@ async function product({ params }) {
   const products = user
     ? await fetchProductsByUserAndTypeAction(user?.id, kwywords())
     : await fetchProductsByTypeProductAction(kwywords());
-  // console.log(params?.productId, kwywords());
+  console.log(params?.productId, kwywords());
   return (
     <div className="flex flex-col items-center gap-10 w-full">
       <ViewProduct

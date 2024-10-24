@@ -26,7 +26,7 @@ function ShoppingCart() {
     <div className=" -mb-4 lg:mb-0 flex items-center justify-between">
       <NewProduct />
       <Link
-        href={`/cart?_ua=${str}`}
+        href={`/cart`}
         className="inline-flex relative border-2 px-3 py-1 rounded-full bg-red-200 shadow-sm shadow-red-400 hover:shadow-md hover:shadow-red-500 cursor-pointer mr-3"
       >
         {add?.length > 0 && (
