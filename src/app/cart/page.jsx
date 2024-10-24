@@ -5,8 +5,8 @@ import axios from "axios";
 import React from "react";
 
 async function CartPage({searchParams}) {
-  const adds = await getProductsAddsAction(searchParams.ua_);
-  return <Cart adds={adds} />;
+  const adds = JSON.parse(searchParams._ua)
+  return <Cart adds={adds.reverse()} />;
 }
 
 export default CartPage;
