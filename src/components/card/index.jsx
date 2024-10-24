@@ -49,7 +49,7 @@ function Cards({ productAdd }) {
             </div>
           </div>
           <div className="flex gap-10">
-            <h1 className="text-sm font-bold text-gray-950">Price:{productAdd?.price}</h1>
+            <h1 className="text-sm font-bold text-red-900">Price:{productAdd?.price}</h1>
             <button className="text-sm font-bold text-white bg-yellow-600 px-3 py-1 h-max rounded-full hover:shadow-sm hover:shadow-gray-700">
           Buy
         </button>
