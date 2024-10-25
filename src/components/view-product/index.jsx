@@ -35,7 +35,7 @@ export default function ViewProduct({ product, user }) {
     let p = add;
     if (p?.length > 0) setC(p);
   }, [a]);
-  
+
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 bg-gray-50 px-5 py-10 mb-20 border-[1px]">
       <div className="w-full flex flex-col gap-5 ">
@@ -109,6 +109,11 @@ export default function ViewProduct({ product, user }) {
         </h6>
         <div className="flex gap-5">
           <button
+            disabled={
+              add?.findIndex((a) => a?._id === product[0]?._id) > -1
+                ? true
+                : false
+            }
             onClick={() => {
               setA(true);
               setLoading(true);
@@ -119,7 +124,7 @@ export default function ViewProduct({ product, user }) {
                 setA(false);
               }, 3000);
             }}
-            className="w-full bg-yellow-700 text-white inline-flex items-center justify-center px-3 py-2 hover:shadow-sm hover:shadow-blue-950 rounded-lg text-xs font-bold"
+            className="w-full bg-yellow-700 disabled:opacity-20 text-white inline-flex items-center justify-center px-3 py-2 hover:shadow-sm hover:shadow-blue-950 rounded-lg text-xs font-bold"
           >
             {loading ? (
               <div className="w-4 h-4 border-4 border-blue-500 rounded-full animate-spin border-t-transparent"></div>

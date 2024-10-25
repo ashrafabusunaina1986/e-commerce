@@ -4,8 +4,8 @@ import { supabaseClient } from "../new-product-s";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-function Cards({ productAdd,user }) {
-  const router=useRouter()
+function Cards({ productAdd, user }) {
+  const router = useRouter();
   const getImageSupabase = () => {
     return supabaseClient.storage
       .from("job-board")
@@ -54,9 +54,16 @@ function Cards({ productAdd,user }) {
             <h1 className="text-sm font-bold text-red-900">
               Price:{productAdd?.price}
             </h1>
-            <button 
-            onClick={() => router.push(!user ? "/sign-in" : "/")}
-            className="text-sm font-bold text-white bg-yellow-600 px-3 py-1 h-max rounded-full hover:shadow-sm hover:shadow-gray-700">
+            <button
+              onClick={() =>
+                router.push(
+                  !user
+                    ? "/sign-in"
+                    : `/sell?product_obj=${JSON.stringify(productAdd)}`
+                )
+              }
+              className="text-sm font-bold text-white bg-yellow-600 px-3 py-1 h-max rounded-full hover:shadow-sm hover:shadow-gray-700"
+            >
               Buy
             </button>
           </div>

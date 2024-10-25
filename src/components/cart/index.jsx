@@ -24,19 +24,31 @@ function Cart({ user }) {
   }, [adds]);
   return (
     <div className="w-full flex flex-col gap-5">
-      <div className="flex gap-10">
-        <h1>
-          Price of goods is{" "}
-          <span className="text-sm font-bold text-red-400">{price}</span>
-        </h1>
-        <button
-          onClick={() => router.push(!user ? "/sign-in" : "/")}
-          className="text-sm font-bold w-max h-max text-white bg-yellow-600 px-3 py-1 rounded-full hover:shadow-sm hover:shadow-gray-700"
-        >
-          Buy
-        </button>
+      <div className="flex flex-col lg:flex-row gap-5">
+        {adds?.length ? (
+          <div className="flex gap-5">
+            <h1>
+              Price of goods is{" "}
+              <span className="text-sm font-bold text-red-400">{price}</span>
+            </h1>
+            <button
+              onClick={() =>
+                router.push(
+                  !user
+                    ? "/sign-in"
+                    : `/sell?product_obj=${JSON.stringify(adds)}`
+                )
+              }
+              className="text-sm font-bold w-max h-max text-white bg-yellow-600 px-3 py-1 rounded-full hover:shadow-sm hover:shadow-gray-700"
+            >
+              Buy
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
         <h5 className="text-xs text-red-950">
-          Number of items are {adds.length}
+          Number of items are {adds?.length}
         </h5>
       </div>
       {adds?.length > 0 ? (
