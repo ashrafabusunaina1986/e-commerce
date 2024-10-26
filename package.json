@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.5.5",
+    "@headlessui/react": "^2.2.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
@@ -21,6 +22,8 @@
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "country-state-city-dropdown": "^3.0.0",
+    "country-state-city-nextjs": "^9.1.0",
     "device-detector-js": "^3.0.3",
     "lucide-react": "^0.441.0",
     "mongoose": "^8.7.0",
