@@ -34,7 +34,8 @@
     "react-tailwindcss-select": "^1.8.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^0.9.4"
+    "vaul": "^0.9.4",
+    "zipcode-detail-lookup": "^1.1.7"
   },
   "devDependencies": {
     "postcss": "^8",
