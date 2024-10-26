@@ -20,8 +20,18 @@ import { Dialog, DialogClose, DialogContent } from "../ui/dialog";
 
 function Sell({ user, product }) {
   const { add, setAdd } = useContext(AddContext);
+  const [dataform, setDataForm] = useState({
+    name: "",
+    phone: "",
+  });
   const router = useRouter();
   const [openDialog, setOpenDialog] = useState(false);
+  const change = (e) => {
+    setDataForm({
+      ...dataform,
+      [e.target.name]: e.target.value,
+    });
+  };
   useEffect(() => {
     const fetchDataCitys = async () => {
       const dcities = await getDataCountrys({ text: "Palestine" });
@@ -30,20 +40,27 @@ function Sell({ user, product }) {
     };
     fetchDataCitys();
   }, []);
-  //   console.log(product);
+
   const handleSell = () => {
-    let addCart = JSON.parse(localStorage.getItem("addCart"));
-    if (addCart?.length === product?.length) {
-      localStorage.setItem("addCart", JSON.stringify([]));
-      setAdd([]);
-    } else {
-      let new_addCart = addCart?.filter((add) => add?._id !== product?._id);
-      localStorage.setItem("addCart", JSON.stringify(new_addCart));
-      setAdd(new_addCart);
+    if (Object.values(dataform).every((item) => item.trim() !== "")) {
+      let addCart = JSON.parse(localStorage.getItem("addCart"));
+      if (addCart?.length === product?.length) {
+        localStorage.setItem("addCart", JSON.stringify([]));
+        setAdd([]);
+      } else {
+        let new_addCart = addCart?.filter((add) => add?._id !== product?._id);
+        localStorage.setItem("addCart", JSON.stringify(new_addCart));
+        setAdd(new_addCart);
+      }
+      setOpenDialog(true);
     }
-    setOpenDialog(true);
   };
-  useEffect(() => {}, []);
+  // useEffect(() => {
+  //   console.log(
+  //     product,
+  //     Object.values(dataform).every((item) => console.log(item) && item !== "")
+  //   );
+  // }, [dataform]);
   return (
     <div className="w-full flex flex-col items-center justify-center gap-5">
       <form
@@ -60,15 +77,17 @@ function Sell({ user, product }) {
           name="name"
           placeholder="Enter Name..."
           className="bg-transparent px-2 py-1 border-b-[1px]"
+          onChange={change}
         />
         {/* </div>
         <div className="flex items-baseline justify-between w-full px-0 py-2"> */}
         {/* <label>Phone Number</label> */}
         <input
           type="phone"
-          name="text"
+          name="phone"
           placeholder="Enter Phone..."
           className="bg-transparent px-2 py-1 border-b-[1px]"
+          onChange={change}
         />
         {/* </div> */}
         {/* <div className="flex items-center justify-center w-full px-0 py-2"> */}
